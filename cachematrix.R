@@ -1,15 +1,36 @@
-## Put comments here that give an overall description of what your
-## functions do
 
-## Write a short comment describing this function
+## Here  are 2 functions that cache and then compute the inverse of a matrix
 
-makeCacheMatrix <- function(x = matrix()) {
+## This function creates a special matrix objectthat can cache its inverse.
 
+makeCacheMatrix <- function(matx = matrix()) {
+  inverse <- NULL
+  set <- function(x) {
+    matx <<- x;
+    inverse <<- NULL;
+  }
+  get <- function() return(matx);
+  setinv <- function(inv) inverse <<- inv;
+  getinv <- function() return(inverse);
+  return(list(set = set, get = get, setinv = setinv, getinv = getinv))
 }
 
+## This function computes the inverse of the special
+## matrix returned by `makeCacheMatrix` above. 
 
-## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+
+cacheSolve <- function(matx, ...) {
+  inverse <- matx$getinv()
+  ##If the inverse has already been calculated, then
+  ## cacheSolve function should retrieve the inverse from the cache.
+  if(!is.null(inverse)) {
+    message("Getting cached data")
+    return(inverse)
+  }
+  ## else calculate the inverse 
+  data <- matx$get()
+  invserse <- solve(data, ...)
+  matx$setinv(inverse)
+  return(inverse)
 }
