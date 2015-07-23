@@ -1,6 +1,6 @@
 ## The following two functions are used to cache the inverse of a matrix.
 
-## makeCacheMatrix creates a list containing a function that
+## makeCacheMatrix creates a list containing a function that;
 ## A. sets the value of the matrix
 ## B. gets the value of the matrix
 ## C. sets the inverse of the matrix
@@ -20,6 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
   getinverse <- function() inv
   list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 }
+
 
 
 # This function returns the inverse of the matrix. 
